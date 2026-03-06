@@ -65,3 +65,7 @@
 - Other examples:
   - https://github.com/danvega/spring-ai-workshop/tree/main/src/main/java/dev/danvega/workshop/tools
   - https://github.com/tzolov/playground-flight-booking/blob/main/src/main/java/ai/spring/demo/ai/playground/services/BookingTools.java
+
+## Architecture
+
+![Arc](docs/Arc.drawio.png)

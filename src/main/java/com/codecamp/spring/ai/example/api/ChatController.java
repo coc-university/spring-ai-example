@@ -1,4 +1,4 @@
-package com.codecamp.spring.ai.example.chat;
+package com.codecamp.spring.ai.example.api;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

@@ -1,6 +1,11 @@
 
 # Spring AI Example
 
+## Important Setup
+
+- add your OPENAI_API_KEY to the environment (e.g. in Intellij), check out application.yml
+- no database needed, the vector store and chat memory are in-memory, just run the app
+
 ## Chat Memory
 
 - Info:
@@ -23,7 +28,7 @@
 
 - Info:
   - https://docs.spring.io/spring-ai/reference/api/retrieval-augmented-generation.html
-  - query in vector database to find additional documents before calling the ai for more context
+  - query in vector database to find additional documents before calling the ai
 - Setup: 
   - for easy use-cases: QuestionAnswerAdvisor + SearchRequest (check out ChatClientConfig)
   - for more complex use-cases: RetrievalAugmentationAdvisor
@@ -43,3 +48,20 @@
   - https://github.com/danvega/spring-ai-workshop/blob/main/src/main/java/dev/danvega/workshop/rag/ModelsController.java
   - https://github.com/joshlong-attic/2026-02-18-bootiful-dogumentary/blob/main/assistant/src/main/java/com/example/assistant/AssistantApplication.java
   - do RAG manually, check of https://github.com/coc-university/spring-ai-rag-example
+
+## Tool Calling
+
+- Info:
+  - https://docs.spring.io/spring-ai/reference/api/tool-calling.html
+  - the ai requests a call to a specific tool to get additional information about a topic
+- Setup:
+  - for internal tools: use @Tool on method in spring bean (check out DemoRepoTools)
+  - for external tools that are on a remote server use mcp (not in this repo)
+    - info: https://docs.spring.io/spring-ai/reference/1.0/api/mcp/mcp-overview.html
+    - example: https://github.com/coc-university/spring-ai-mcp-example
+- Testing
+  - Erzähle mir etwas über Robin und seine Demo-Repos → http://localhost:8080/chat?message=Erz%C3%A4hle%20mir%20etwas%20%C3%BCber%20Robin%20und%20seine%20Demo-Repos
+    - the ai calls the tool getDemoRepoFromOwner() to get the information about Robin's repos and answers correct
+- Other examples:
+  - https://github.com/danvega/spring-ai-workshop/tree/main/src/main/java/dev/danvega/workshop/tools
+  - https://github.com/tzolov/playground-flight-booking/blob/main/src/main/java/ai/spring/demo/ai/playground/services/BookingTools.java

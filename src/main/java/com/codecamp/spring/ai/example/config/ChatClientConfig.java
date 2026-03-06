@@ -1,21 +1,34 @@
 package com.codecamp.spring.ai.example.config;
 
+import com.codecamp.spring.ai.example.api.ChatController;
+import com.codecamp.spring.ai.example.tools.DemoRepoTools;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.ai.chat.client.ChatClient;
 import org.springframework.ai.chat.client.advisor.MessageChatMemoryAdvisor;
 import org.springframework.ai.chat.client.advisor.SimpleLoggerAdvisor;
 import org.springframework.ai.chat.client.advisor.vectorstore.QuestionAnswerAdvisor;
 import org.springframework.ai.chat.memory.ChatMemory;
+import org.springframework.ai.support.ToolCallbacks;
 import org.springframework.ai.vectorstore.SearchRequest;
 import org.springframework.ai.vectorstore.VectorStore;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import java.util.Arrays;
+
 @Configuration
 public class ChatClientConfig {
 
-    @Bean
-    public ChatClient chatClient(ChatClient.Builder chatClientBuilder, ChatMemory chatMemory, VectorStore vectorStore) {
+    private static final Logger log = LoggerFactory.getLogger(ChatClientConfig.class);
 
+    @Bean
+    public ChatClient chatClient(
+            ChatClient.Builder chatClientBuilder,
+            ChatMemory chatMemory,
+            VectorStore vectorStore,
+            DemoRepoTools tools
+    ) {
         SimpleLoggerAdvisor logger = new SimpleLoggerAdvisor();
 
         /*
@@ -42,8 +55,14 @@ public class ChatClientConfig {
                 .searchRequest(SearchRequest.builder().similarityThreshold(0.5).build()) // 0.0 -> 0.5
                 .build();
 
+        // print all registered tools
+        Arrays.stream(ToolCallbacks.from(tools)).forEach(toolCallback -> {
+            log.info("Registered tool: {}", toolCallback.getToolDefinition().name());
+        });
+
         return chatClientBuilder
                 .defaultAdvisors(logger, memory, rag)
+                .defaultTools(tools)
                 .build();
     }
 }

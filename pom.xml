@@ -8,7 +8,7 @@
 		<version>3.5.11</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.codecamp.mcp.client.example</groupId>
+	<groupId>com.codecamp.spring.ai.example</groupId>
 	<artifactId>spring-ai-example</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>spring-ai-example</name>

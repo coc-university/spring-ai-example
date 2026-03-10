@@ -69,3 +69,20 @@
 ## Architecture
 
 ![Arc](docs/Arc.drawio.png)
+
+## Agents
+- what is an agent?
+  - an agent has more responsibilities than just calling a tool for one task
+  - it manages the whole process of solving a complex problem, which can include multiple steps
+  - so orchestrate/plan the steps and execute them as workflow, including state management, error handling, etc
+  - e.g. not only book the flight, but also check the weather at the destination, find a hotel, and so on
+  - so using an agent is like moving the work to a third party and let it figure out how to achieve the goal
+- not really possible in spring-ai right now
+  - spring-ai provides only the basic building blocks (tools, memory, etc)
+  - but you as developer have to implement the agentic behavior on top of that
+- check out blog-posts and documentations about agentic features:
+  - https://spring.io/blog/2025/05/20/spring-ai-1-0-GA-released#agents
+  - https://spring.io/blog/2025/11/12/spring-ai-1-1-GA-released
+  - https://docs.spring.io/spring-ai/reference/api/effective-agents.html
+  - https://spring.io/blog/2026/01/13/spring-ai-generic-agent-skills
+  - https://github.com/orgs/spring-ai-community/repositories?q=agent

@@ -80,9 +80,22 @@
 - not really possible in spring-ai right now
   - spring-ai provides only the basic building blocks (tools, memory, etc)
   - but you as developer have to implement the agentic behavior on top of that
-- check out blog-posts and documentations about agentic features:
+- check out:
   - https://spring.io/blog/2025/05/20/spring-ai-1-0-GA-released#agents
   - https://spring.io/blog/2025/11/12/spring-ai-1-1-GA-released
   - https://docs.spring.io/spring-ai/reference/api/effective-agents.html
   - https://spring.io/blog/2026/01/13/spring-ai-generic-agent-skills
   - https://github.com/orgs/spring-ai-community/repositories?q=agent
+- A2A protocol:
+  - a way for agents to communicate with each other (MCP is for agents to communicate with external tools)
+  - so you can have multiple agents with different responsibilities that work together to solve a complex problem
+  - e.g. one agent is responsible for booking the flight, another agent is responsible for finding a hotel
+  - they discover each other via Agent Cards, which are like profiles that describe the agent's capabilities
+  - the A2A integration in spring-ai is currently supported through an community project
+  - check out:
+    - blog: https://spring.io/blog/2026/01/29/spring-ai-agentic-patterns-a2a-integration
+    - core concepts: https://a2a-protocol.org/latest/topics/key-concepts/
+    - example: https://github.com/spring-ai-community/spring-ai-a2a/tree/main/spring-ai-a2a-examples
+    - video: https://www.youtube.com/watch?v=WGeHYPLbXMk
+
+![A2A-and-MCP](docs/A2A-and-MCP.png)

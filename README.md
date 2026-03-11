@@ -77,13 +77,17 @@
   - so orchestrate/plan the steps and execute them as workflow, including state management, error handling, etc
   - e.g. not only book the flight, but also check the weather at the destination, find a hotel, and so on
   - so using an agent is like moving the work to a third party and let it figure out how to achieve the goal
-- not really possible in spring-ai right now
-  - spring-ai provides only the basic building blocks (tools, memory, etc)
+- it's your turn:
+  - spring-ai is not supposed to be an agent framework like langGraph/crewAI, it's more like langChain
+  - it provides only the basic building blocks (tools, memory, etc)
   - but you as developer have to implement the agentic behavior on top of that
+  - it's recommended to use patterns for deterministic workflows to be predictable
+  - this is better for enterprise requirements like reliability and maintainability
+  - "while fully autonomous agents might seem appealing, workflows are often better"
 - check out:
+  - https://docs.spring.io/spring-ai/reference/api/effective-agents.html (based on Anthropic's publication)
   - https://spring.io/blog/2025/05/20/spring-ai-1-0-GA-released#agents
   - https://spring.io/blog/2025/11/12/spring-ai-1-1-GA-released
-  - https://docs.spring.io/spring-ai/reference/api/effective-agents.html
   - https://spring.io/blog/2026/01/13/spring-ai-generic-agent-skills
   - https://github.com/orgs/spring-ai-community/repositories?q=agent
 - A2A protocol:
@@ -91,7 +95,7 @@
   - so you can have multiple agents with different responsibilities that work together to solve a complex problem
   - e.g. one agent is responsible for booking the flight, another agent is responsible for finding a hotel
   - they discover each other via Agent Cards, which are like profiles that describe the agent's capabilities
-  - the A2A integration in spring-ai is currently supported through an community project
+  - the A2A integration in spring-ai is currently supported through a community project
   - check out:
     - blog: https://spring.io/blog/2026/01/29/spring-ai-agentic-patterns-a2a-integration
     - core concepts: https://a2a-protocol.org/latest/topics/key-concepts/
@@ -99,3 +103,16 @@
     - video: https://www.youtube.com/watch?v=WGeHYPLbXMk
 
 ![A2A-and-MCP](docs/A2A-and-MCP.png)
+
+## Embabel
+- high-level framework for creating agents with the jvm
+- is build on top of spring-ai
+- alternative to langGraph/crewAI
+- developed by Rod Johnson, the creator of Spring
+- it uses a deterministic (not-llm) planning algorithm called "Goal Oriented Action Planning" (GOAP)
+- other agent frameworks use state machines or sequential execution, that have some limitations
+- check out:
+  - https://github.com/embabel/embabel-agent
+  - https://docs.embabel.com/embabel-agent/guide/0.1.1/index.html#reference.profiles
+
+![Embabel-Stack](docs/Embabel-Stack.drawio.png)

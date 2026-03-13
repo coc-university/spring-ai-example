@@ -107,12 +107,37 @@
 ## Embabel
 - high-level framework for creating agents with the jvm
 - is build on top of spring-ai
-- alternative to langGraph/crewAI
+- alternative to langGraph/crewAI/etc
 - developed by Rod Johnson, the creator of Spring
-- it uses a deterministic (not-llm) planning algorithm called "Goal Oriented Action Planning" (GOAP)
+- it uses a deterministic (non-llm) planning algorithm called "Goal Oriented Action Planning" (GOAP)
 - other agent frameworks use state machines or sequential execution, that have some limitations
+- other advantages through the environment:
+  - strong typing (because of the jvm) and domain model objects, no magic strings
+  - easier to integrate into enterprise business apps (because of spring)
 - check out:
   - https://github.com/embabel/embabel-agent
-  - https://docs.embabel.com/embabel-agent/guide/0.1.1/index.html#reference.profiles
+  - https://docs.embabel.com/embabel-agent/guide/0.1.1/
+  - https://www.youtube.com/results?search_query=rod+johnson+embabel
+  - https://medium.com/@springrod/build-better-agents-in-java-vs-python-embabel-vs-langgraph-f7951a0d855c
 
 ![Embabel-Stack](docs/Embabel-Stack.drawio.png)
+
+## Agent Framework Comparison
+- spring-ai has a prescriptive approach, so you have to implement workflow-patterns by yourself
+- Embabel is more autonomous, because it has a dynamic (but deterministic) planning algorithm
+
+| Framework       | Autonomy Level | Architecture Type            | Control Mechanism      | Core Pattern / Internal Structure       | Use-Case Focus                 |
+|-----------------|----------------|------------------------------|------------------------|-----------------------------------------|--------------------------------|
+| **Spring-AI**   | Low            | Workflow / Structured Agents | Code-orchestrated      | Chain / Sequential / Orchestrator       | Prescriptive agent workflows   |
+| LangChain       | Low            | Tool-Using Agents            | Code-orchestrated      | Chain / Pipeline                        | RAG / deterministic workflows  |
+| LlamaIndex      | Low            | Tool-Using Agents            | Code-orchestrated      | Chain / Retrieval-Enhanced Pipeline     | RAG / data-intensive tasks     |
+| Haystack        | Low-Medium     | Workflow / Graph Agents      | Code-orchestrated      | Pipeline / Graph                        | RAG / NLP pipelines            |
+| LangGraph       | Low-Medium     | Workflow / Graph Agents      | LLM-orchestrated       | State-Machine / Graph                   | Structured agent orchestration |
+| Semantic Kernel | Medium         | Workflow / Graph Agents      | LLM-orchestrated       | Skills + Planner / State-Machine        | Enterprise agent orchestration |
+| **Embabel**     | Medium-High    | Planning Agents              | Goal-driven            | Goal-Oriented Action Planning (GOAP)    | Goal-oriented task planning    |
+| CrewAI          | Medium-High    | Multi-Agent Orchestration    | Structured multi-agent | Multi-Agent / Role-Based / Flow         | Multi-agent collaboration      |
+| AutoGPT         | High           | Planning Agents              | Goal-driven            | Goal-Driven Planning Loop               | Autonomous goal-driven tasks   |
+| AutoGen         | High           | Multi-Agent Systems          | Emergent multi-agent   | Multi-Agent / Emergent / Dialog         | Multi-agent collaboration      |
+| MetaGPT         | High           | Planning Agents              | Goal-driven            | Goal-Driven / Multi-Agent-like Planning | Software project planning      |
+
+

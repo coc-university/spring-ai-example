@@ -1,12 +1,9 @@
 <mxfile host="Electron" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/29.6.1 Chrome/142.0.7444.265 Electron/39.8.0 Safari/537.36" version="29.6.1">
   <diagram name="Seite-1" id="9fWIyxL0uQ9a5Bx1wuFd">
-    <mxGraphModel dx="1426" dy="776" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="864" dy="470" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
-        <mxCell id="zAH5vAD4bL3cytVTLn-W-1" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Spring" vertex="1">
-          <mxGeometry height="40" width="170" x="80" y="220" as="geometry" />
-        </mxCell>
         <mxCell id="zAH5vAD4bL3cytVTLn-W-2" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Spring Boot" vertex="1">
           <mxGeometry height="40" width="170" x="80" y="170" as="geometry" />
         </mxCell>
@@ -16,11 +13,14 @@
         <mxCell id="zAH5vAD4bL3cytVTLn-W-4" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Embabel" vertex="1">
           <mxGeometry height="40" width="170" x="80" y="70" as="geometry" />
         </mxCell>
-        <mxCell id="zAH5vAD4bL3cytVTLn-W-5" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;rounded=0;" value="basic building blocks for ai applications with spring" vertex="1">
-          <mxGeometry height="30" width="270" x="270" y="125" as="geometry" />
+        <mxCell id="zAH5vAD4bL3cytVTLn-W-5" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;rounded=0;" value="basic building blocks for ai applications" vertex="1">
+          <mxGeometry height="30" width="220" x="270" y="125" as="geometry" />
         </mxCell>
-        <mxCell id="zAH5vAD4bL3cytVTLn-W-6" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;rounded=0;" value="additions features for agentic workflows" vertex="1">
+        <mxCell id="zAH5vAD4bL3cytVTLn-W-6" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;rounded=0;" value="features for agentic workflows" vertex="1">
           <mxGeometry height="30" width="220" x="270" y="75" as="geometry" />
+        </mxCell>
+        <mxCell id="4qKuZ_eVVeCfuRt_jFFY-1" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;rounded=0;" value="base environment" vertex="1">
+          <mxGeometry height="30" width="220" x="270" y="175" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>

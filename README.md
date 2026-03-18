@@ -6,6 +6,14 @@
 - add your OPENAI_API_KEY to the environment (e.g. in Intellij), check out application.yml
 - no database needed, the vector store and chat memory are in-memory, just run the app
 
+## Basic Chat Config
+
+- the ChatClient is the main entry point for all ai-interactions
+- it uses internal an implementation of the ChatModel interface, e.g. OpenAiChatModel
+- the OpenAiChatModel will be autoconfigured through OpenAiChatAutoConfiguration
+- in there you find the defaults for the model, e.g. the url, name, temperature, etc.
+- the AutoConfiguration comes in via transitive dependency from spring-ai-starter-model-openai
+
 ## Chat Memory
 
 - Info:

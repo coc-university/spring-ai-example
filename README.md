@@ -13,6 +13,9 @@
 - the OpenAiChatModel will be autoconfigured through OpenAiChatAutoConfiguration
 - in there you find the defaults for the model, e.g. the url, name, temperature, etc.
 - the AutoConfiguration comes in via transitive dependency from spring-ai-starter-model-openai
+- your personal OPENAI_API_KEY will be embedded in OpenAiApi as Bearer-Header
+
+![Chat-Config](docs/Chat-Config.drawio.png)
 
 ## Chat Memory
 

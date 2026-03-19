@@ -133,19 +133,25 @@
 
 ![Embabel-Stack](docs/Embabel-Stack.drawio.png)
 
+## Koog
+- another high-level framework for creating agents with the jvm
+- not on top of spring-ai, but integration with spring is possible
+- developed by JetBrains
+
 ## Agent Framework Comparison
 - spring-ai has a prescriptive approach, so you have to implement workflow-patterns by yourself
 - Embabel is more autonomous, because it has a dynamic (but deterministic) planning algorithm
 
 | Framework       | Autonomy Level | Architecture Type            | Control Mechanism      | Core Pattern / Internal Structure       | Use-Case Focus                 |
 |-----------------|----------------|------------------------------|------------------------|-----------------------------------------|--------------------------------|
-| **Spring-AI**   | Low            | Workflow / Structured Agents | Code-orchestrated      | Chain / Sequential / Orchestrator       | Prescriptive agent workflows   |
+| ❗ **Spring-AI**   | Low            | Workflow / Structured Agents | Code-orchestrated      | Chain / Sequential / Orchestrator       | Prescriptive agent workflows   |
 | LangChain       | Low            | Tool-Using Agents            | Code-orchestrated      | Chain / Pipeline                        | RAG / deterministic workflows  |
 | LlamaIndex      | Low            | Tool-Using Agents            | Code-orchestrated      | Chain / Retrieval-Enhanced Pipeline     | RAG / data-intensive tasks     |
 | Haystack        | Low-Medium     | Workflow / Graph Agents      | Code-orchestrated      | Pipeline / Graph                        | RAG / NLP pipelines            |
 | LangGraph       | Low-Medium     | Workflow / Graph Agents      | LLM-orchestrated       | State-Machine / Graph                   | Structured agent orchestration |
 | Semantic Kernel | Medium         | Workflow / Graph Agents      | LLM-orchestrated       | Skills + Planner / State-Machine        | Enterprise agent orchestration |
-| **Embabel**     | Medium-High    | Planning Agents              | Goal-driven            | Goal-Oriented Action Planning (GOAP)    | Goal-oriented task planning    |
+| ❗ **Koog**      | Medium         | Workflow / Graph Agents      | Code-orchestrated      | Flow / State-Machine / Skills           | JVM agent workflows            |
+| ❗ **Embabel**   | Medium-High    | Planning Agents              | Goal-driven            | Goal-Oriented Action Planning (GOAP)    | Goal-oriented task planning    |
 | CrewAI          | Medium-High    | Multi-Agent Orchestration    | Structured multi-agent | Multi-Agent / Role-Based / Flow         | Multi-agent collaboration      |
 | AutoGPT         | High           | Planning Agents              | Goal-driven            | Goal-Driven Planning Loop               | Autonomous goal-driven tasks   |
 | AutoGen         | High           | Multi-Agent Systems          | Emergent multi-agent   | Multi-Agent / Emergent / Dialog         | Multi-agent collaboration      |

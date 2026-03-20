@@ -85,7 +85,7 @@
   - https://spring.io/blog/2026/01/13/spring-ai-generic-agent-skills
   - https://docs.spring.io/spring-ai/reference/api/chat/anthropic-chat.html#_skills
   - a skill is a reusable piece of text/logic that can be used by the ai to perform a specific task
-    - extend the context with additional information/instructions
+    - extend the context with additional instructions/process-logic
     - or trigger an action through scripts/CLIs, e.g. python-code or bash
   - it has a header with name plus description and a body with the actual content
   - there is a growing ecosystem of skills, e.g. https://skills.sh 
@@ -99,21 +99,46 @@
   - https://github.com/spring-ai-community/spring-ai-agent-utils/tree/main/examples/skills-demo
   - https://github.com/jamesward/agent-integration-demo/blob/main/src/main/java/com/jamesward/BasicSkills.java
 
-## Comparison
+## Comparison MCP-Tools vs Skills
 
 - MCP-Tools:
-  - if you want to move the logic to an external server
-  - some kind of deployment necessary
-  - needs more space in the context window, because of the communication overhead
-  - better for security and maintainability
-  - easier to integrate into microservices
+  - externalize logic
+    - if you want to move the logic to an external server and collect it there
+    - some kind of deployment necessary to use it
+  - advantages
+    - better for security/auth and maintainability
+    - can use auditing/logging/monitoring on the server side
+    - easy to integrate into deployed microservices
+    - can be used by Browser-UIs like ChatGPT (connectors)
+  - context window problem
+    - needs much space if loaded all at once in the beginning
+    - reduction possible via search feature in MCP, so load only on demand
+    - https://www.anthropic.com/engineering/advanced-tool-use
 - Skills:
   - if you want to keep the text/logic in the same project
   - better for performance and simplicity
-  - needs less space in the context window
   - more for programms that run locally on your laptop
   - authentication via credentials happens locally
   - can also take actions through scripts / CLIs, similar to tools
+  - needs less space in the context window
+
+## How to provide context information?
+
+- internal knowledge → use RAG
+  - e.g. company policies, jira-tickets, etc.
+  - can be big and complex, needs search
+- real time data → use (mcp) tools
+  - e.g. live weather, stock prices, etc.
+  - or your internal data that changes frequently, e.g. inventory table, etc.
+  - can be not provided statically upfront in the prompt
+- process logic → use skills
+  - e.g. generate a report, format a document, etc.
+  - can be public or company-internal
+- combine context information → use RAG + tools + skills
+  - e.g. usecase: generate a report
+  - first: query documents for the report-body via RAG 
+  - second: fetch up-to-date information for the report-header via tools
+  - end: use a skill to generate the formatted report
 
 ## Architecture
 

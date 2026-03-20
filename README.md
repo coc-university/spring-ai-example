@@ -63,12 +63,14 @@
 ## Tool Calling
 
 - Info:
-  - https://docs.spring.io/spring-ai/reference/api/tool-calling.html
-  - the ai requests a call to a specific tool to get additional information about a topic
+  - https://docs.spring.io/spring-ai/reference/api/tools.html
+  - the ai requests a call to a specific tool to get additional information or trigger an action
 - Setup:
   - for internal tools: use @Tool on method in spring bean (check out DemoRepoTools)
   - for external tools that are on a remote server use mcp (not in this repo)
     - info: https://docs.spring.io/spring-ai/reference/1.0/api/mcp/mcp-overview.html
+    - your app is the client, the tools are located on the server
+    - e.g. call a gmail mcp-server to read your mails
     - example: https://github.com/coc-university/spring-ai-mcp-example
 - Testing
   - Erzähle mir etwas über Robin und seine Demo-Repos → http://localhost:8080/chat?message=Erz%C3%A4hle%20mir%20etwas%20%C3%BCber%20Robin%20und%20seine%20Demo-Repos
@@ -76,6 +78,42 @@
 - Other examples:
   - https://github.com/danvega/spring-ai-workshop/tree/main/src/main/java/dev/danvega/workshop/tools
   - https://github.com/tzolov/playground-flight-booking/blob/main/src/main/java/ai/spring/demo/ai/playground/services/BookingTools.java
+
+## Skills
+
+- Info:
+  - https://spring.io/blog/2026/01/13/spring-ai-generic-agent-skills
+  - https://docs.spring.io/spring-ai/reference/api/chat/anthropic-chat.html#_skills
+  - a skill is a reusable piece of text/logic that can be used by the ai to perform a specific task
+    - extend the context with additional information/instructions
+    - or trigger an action through scripts/CLIs, e.g. python-code or bash
+  - it has a header with name plus description and a body with the actual content
+  - there is a growing ecosystem of skills, e.g. https://skills.sh 
+- SkillsJars:
+  - a way to package/bundle and share skills as reusable jars
+  - with versions, security checks, etc.
+  - can be published to maven central and used as dependencies in other projects
+  - or extract the skills via plugin to use it in Claude/Codex/etc
+  - https://app.daily.dev/posts/announcing-skillsjars---agent-skills-on-maven-central-hlqsuhas6
+- Examples:
+  - https://github.com/spring-ai-community/spring-ai-agent-utils/tree/main/examples/skills-demo
+  - https://github.com/jamesward/agent-integration-demo/blob/main/src/main/java/com/jamesward/BasicSkills.java
+
+## Comparison
+
+- MCP-Tools:
+  - if you want to move the logic to an external server
+  - some kind of deployment necessary
+  - needs more space in the context window, because of the communication overhead
+  - better for security and maintainability
+  - easier to integrate into microservices
+- Skills:
+  - if you want to keep the text/logic in the same project
+  - better for performance and simplicity
+  - needs less space in the context window
+  - more for programms that run locally on your laptop
+  - authentication via credentials happens locally
+  - can also take actions through scripts / CLIs, similar to tools
 
 ## Architecture
 

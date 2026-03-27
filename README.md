@@ -225,4 +225,102 @@
 | AutoGen             | High           | Multi-Agent Systems          | Emergent multi-agent   | Multi-Agent / Emergent / Dialog         | Multi-agent collaboration      |
 | MetaGPT             | High           | Planning Agents              | Goal-driven            | Goal-Driven / Multi-Agent-like Planning | Software project planning      |
 
+## Agent Applications
 
+- OpenClaw
+  - pre-build app
+  - llm-based orchestration, autonomous, so non-deterministic
+- n8n
+  - visual & low-code tool for building apps
+  - workflow-based orchestration, deterministic (more control)
+  - ai-agent features are optional, not autonomous by default
+- Assistants:
+  - pre-build from big companies
+  - especially for coding tasks
+  - e.g. Claude Code, Codex, GH-Copilot, etc
+  - not complete autonomous agents, but close to it
+- Write your own app
+  - use e.g. basic building blocks from Spring-AI + custom Workflows
+  - or use a framework like Embabel
+  - everything custom, it's flexible but more effort
+
+## OpenClaw
+
+### Overview
+
+- open source ai-agent application
+  - by Peter Steinberger from Austria (now employed by OpenAI)
+  - just a hobby project, not an enterprise program, use carefully
+  - connect an input channel (e.g. WhatsApp) to your agent to trigger him
+  - let the agent perform actions for you (e.g. send an email, check the calendar)
+  - similar to agent-apps (Claude Code, Codex, etc) but with many integrations
+- tech-stack
+  - build: node + typescript
+  - runtime: docker container
+  - environment: local on your pc or in a hosted VPS (e. g. via Hostinger)
+- tech-architecture
+  - channel-adapters → gateway → queue → agent-runner → llm-loop
+  - e.g. message/event → pass through to agent → call llm to take actions
+  - it's a complicated message-queue + connectors + llm-orchestration
+  - no internal llm, choose one provider to connect (like other agent-apps)
+- billing options
+  - api-key: pay per use of tokens (add limits to protect yourself)
+  - OAuth: pay fix price per month via subscription
+
+### Components
+
+- agentic loop (ReAct-concept) 
+  - think/plan what to do
+  - execute step
+  - observe result and adjust 
+  - → next cycle/step
+- workspace: just .md files
+  - soul: the general personality (like system prompt)
+  - identity: custom personality (name, emoji, vibe)
+  - agents: working mode, how to behave during loop
+  - user: the profile of me (name, speech, time-zone, etc)
+  - tools: available tools that could be used
+    - uses CLI over MCP unter the hood
+    - converts MCP-features into CLIs
+    - more natural for models to use unix commands
+    - better for filtering large data responses (less context)
+  - skills: how to behave on a certain task (+ ClawHub platform)
+  - memory: notes about the daily conversations
+- context engine
+  - fills the context window properly
+  - so use the .md files from the workspace
+  - sliding window: remove old message, add summary
+  - or context graph: store everything, decide what's currently relevant
+- gateway
+  - main entry point for incoming messages
+  - e.g. whatsapp → gateway → app → llm
+  - sequential queue mechanism to buffer messages
+  - gateway dashboard available to track internals
+- sessions
+  - separate independent conversations
+  - no mixture of informations
+  - multi-agent setup possible
+- sub-agents
+  - the main agent can sin up a short living temporal agent for one task
+  - has it's own independent context window
+  - can use a different/specialized model
+- heartbeat
+  - proactive internal wakeup (no external trigger)
+  - to check/track if there are open tasks in a .md file
+  - can be token-expensive on short cycles
+  - cron-jobs: for periodic planned tasks (e.g. calendar meetings)
+- extension options
+  - plugins: bundled skills that can be integrated
+  - nodes: integrate smart devices (phone, speaker, glasses)
+- security
+  - problem: prompt injection (hidden bad instructions)
+  - openclaw.json to activate stuff (deny by default)
+  - tradeoff between security and functionality
+  - periodic security check possible (e.g. check access rights)
+  - sandbox mode possible (only work in specific folder)
+  - use a hosted VPS (Virtual Private Server) to be isolated
+    - e. g. via Hostinger (one-click installation, a few euro/month)
+    - handles the infrastructure/network and updates
+    - a reverse-proxy/firewall in front of the gateway protects the ip-address/port
+    - access only via specific domain and gateway-token
+    - use ssh in the terminal to get into the server and container
